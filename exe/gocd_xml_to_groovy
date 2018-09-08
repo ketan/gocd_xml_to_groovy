@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+require "gocd_xml_to_groovy"
