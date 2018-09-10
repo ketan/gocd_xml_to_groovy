@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-require "gocd_xml_to_groovy"
+require "gocd_xml_to_groovy/cli"
+
+GocdXmlToGroovy::CLI.start

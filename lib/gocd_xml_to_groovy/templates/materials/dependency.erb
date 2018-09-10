@@ -1,0 +1,5 @@
+dependency<%= "('#{material.attributes.name}')" if material.attributes.name %> {
+          <%- filtered_attributes(material.attributes, :pipeline, :stage, :destination, :autoUpdate, _ignore: [:name]) do |k, v| -%>
+          <%= k %> = <%= v %>
+          <%- end -%>
+        }

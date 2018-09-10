@@ -1,0 +1,5 @@
+<%= task.attributes.is_source_a_file ? 'fetchFile' : 'fetchDirectory' %> {
+                  <%- filtered_attributes(task.attributes, :pipeline, :stage, :job, :source, :destination, :runIf, _ignore: [:artifact_origin, :is_source_a_file]) do |k, v| -%>
+                  <%= k %> = <%= v %>
+                  <%- end -%>
+                }

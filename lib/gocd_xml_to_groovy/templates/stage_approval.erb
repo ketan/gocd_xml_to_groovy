@@ -1,0 +1,11 @@
+<%- unless approval.type == 'success' && approval.authorization.roles.blank? && approval.authorization.users.blank? %>
+approval {
+            type = <%= coerce_value(approval.type) %>
+            <%- unless approval.authorization.users.blank? -%>
+            users = <%= coerce_value(approval.authorization.users)%>
+            <%- end -%>
+            <%- unless approval.authorization.roles.blank? -%>
+            roles = <%= coerce_value(approval.authorization.roles)%>
+            <%- end -%>
+          }
+<%- end -%>

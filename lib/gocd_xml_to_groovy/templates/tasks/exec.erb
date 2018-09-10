@@ -1,0 +1,6 @@
+exec {
+                  commandLine = <%= coerce_value([task.attributes.command, *task.attributes.arguments].compact) %>
+                  <%- filtered_attributes(task, working_directory: :workingDir, _ignore: [:type, :attributes]) do |k, v| -%>
+                  <%= k %> = <%= v %>
+                  <%- end -%>
+                }

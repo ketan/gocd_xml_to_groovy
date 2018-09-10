@@ -1,0 +1,4 @@
+      trackingTool {
+        link = <%= coerce_value(tracking_tool.attributes.url_pattern) %>
+        regex = ~/<%= tracking_tool.attributes.regex %>/
+      }

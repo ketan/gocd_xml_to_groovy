@@ -1,0 +1,18 @@
+import cd.go.contrib.plugins.configrepo.groovy.dsl.*
+
+GoCD.script {
+  pipelines {
+    pipeline('<%= pipeline.name %>') {
+      <%= render 'materials.erb', materials: pipeline.materials -%>
+      <%= render 'params.erb', parameters: pipeline.parameters unless pipeline.parameters.blank? -%>
+      <%= render 'environment_vars.erb', environment_variables: pipeline.environment_variables unless pipeline.environment_variables.blank? -%>
+      <%= render 'tracking_tool.erb', tracking_tool: pipeline.tracking_tool if pipeline.tracking_tool -%>
+      <%= render 'timer.erb', timer: pipeline.timer if pipeline.timer -%>
+
+      <%- filtered_attributes(pipeline, :labelTemplate, :lockBehavior, :template, _ignore: [:name, :origin, :parameters, :environment_variables, :materials, :stages, :tracking_tool, :timer]) do |k, v| -%>
+      <%= k %> = <%= v %>
+      <%- end -%>
+      <%= render 'stages.erb', stages: pipeline.stages -%>
+    }
+  }
+}

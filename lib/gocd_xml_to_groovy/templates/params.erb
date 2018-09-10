@@ -1,0 +1,6 @@
+params = [
+      <%- longest_param_len = parameters.collect(&:name).max_by(&:length).length -%>
+      <%- parameters.each do |each_param| -%>
+        <%= coerce_value(each_param.name).to_s.ljust(longest_param_len+2, ' ') %>: <%= coerce_value(each_param.value) %>,
+      <%- end -%>
+      ]

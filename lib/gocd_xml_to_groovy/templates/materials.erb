@@ -1,0 +1,5 @@
+materials {
+        <%- materials.each do |material| -%>
+      <%= render "materials/#{material.type}.erb", material: material %>
+        <%- end -%>
+      }

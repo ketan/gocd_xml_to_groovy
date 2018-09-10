@@ -1,0 +1,6 @@
+exec {
+                  commandLine = <%= coerce_value(['rake', task.attributes.build_file ? ['-f', task.attributes.build_file] : nil, task.attributes.target].flatten.compact) %>
+                  <%- filtered_attributes(task, working_directory: :workingDir, _ignore: [:type, :attributes]) do |k, v| -%>
+                  <%= k %> = <%= v %>
+                  <%- end -%>
+                }

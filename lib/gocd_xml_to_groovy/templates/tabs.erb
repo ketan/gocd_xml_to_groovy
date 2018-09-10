@@ -1,0 +1,7 @@
+tabs {
+                <%- tabs.each do |tab| -%>
+                tab(<%= coerce_value(tab.name) %>) {
+                  path = <%= coerce_value(tab.path) %>
+                }
+                <%- end -%>
+              }

@@ -1,0 +1,18 @@
+<% unless stages.blank? %>
+
+      stages {
+        <%- (stages || []).each do |stage| -%>
+        stage('<%= stage.name %>') {
+          <%= render 'environment_vars.erb', environment_variables: stage.environment_variables -%>
+
+          <%= render 'stage_approval.erb', approval: stage.approval %>
+
+          <%- filtered_attributes(stage, :fetchMaterials, clean_working_directory: :cleanWorkingDir, never_cleanup_artifacts: :artifactCleanupProhibited, _ignore: [:name, :approval, :environment_variables, :jobs]) do |k, v| -%>
+          <%= k %> = <%= v %>
+          <%- end -%>
+
+          <%= render 'jobs.erb', jobs: stage.jobs unless stage.jobs.blank? -%>
+        }
+        <%- end -%>
+      }
+      <%- end -%>

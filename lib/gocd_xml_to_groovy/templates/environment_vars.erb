@@ -1,0 +1,16 @@
+      <%- unless plain_variables(environment_variables).blank? -%>
+      environmentVariables = [
+      <%- plain_variables(environment_variables).each do |each_var| -%>
+        <%= coerce_value(each_var.name).to_s.ljust(longest_plain_var_name(environment_variables)+2, ' ') %>: <%= coerce_value(each_var.value) %>,
+      <%- end -%>
+      ]
+
+      <%- end -%>
+      <%- unless secure_variables(environment_variables).blank? -%>
+      secureEnvironmentVariables = [
+      <%- secure_variables(environment_variables).each do |each_var| -%>
+        <%= coerce_value(each_var.name).to_s.ljust(longest_secure_var_name(environment_variables)+2, ' ') %>: <%= coerce_value(each_var.encrypted_value) %>,
+      <%- end -%>
+      ]
+
+      <%- end -%>

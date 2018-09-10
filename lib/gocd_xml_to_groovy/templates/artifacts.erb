@@ -1,0 +1,12 @@
+artifacts {
+                <%- artifacts.each do |artifact| -%>
+                <%- if %w(test build).include?(artifact.type) -%>
+                <%= artifact.type %> {
+                  source = <%= coerce_value(artifact.source) %>
+                  destination = <%= coerce_value(artifact.destination) %>
+                }
+                <%- else -%>
+                <% throw "Unsupported artifact type #{artifact.type}" %>
+                <%- end -%>
+                <%- end -%>
+              }

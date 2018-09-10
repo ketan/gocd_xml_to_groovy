@@ -1,0 +1,16 @@
+jobs {
+            <%- jobs.each do |job| -%>
+            job('<%= job.name %>') {
+              <%= render 'environment_vars.erb', environment_variables: job.environment_variables unless job.environment_variables.blank? -%>
+
+              <%- filtered_attributes(job, :runInstanceCount, :timeout, :elasticProfileId, :resources, _ignore: [:name, :environment_variables, :tasks, :tabs, :artifacts, :properties]) do |k, v| -%>
+              <%= k %> = <%= v %>
+              <%- end -%>
+
+              <%= render 'tasks.erb', tasks: job.tasks -%>
+              <%= render 'tabs.erb', tabs: job.tabs unless job.tabs.blank? -%>
+              <%= render 'artifacts.erb', artifacts: job.artifacts unless job.artifacts.blank? -%>
+              <%= raise "Properties are currently unsupported!" unless job.properties.blank? -%>
+            }
+            <%- end -%>
+          }

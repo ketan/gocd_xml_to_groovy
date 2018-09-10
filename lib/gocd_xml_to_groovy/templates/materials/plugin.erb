@@ -1,0 +1,6 @@
+pluggable<%= "('#{material.attributes.name}')" if material.attributes.name %> {
+          <%- filtered_attributes(material.attributes, :destination, ref: :scm, _ignore: [:filter, :invert_filter]) do |k, v| -%>
+          <%= k %> = <%= v %>
+          <%- end -%>
+          <%= render 'materials/filter.erb', filter: material.attributes.filter, invert_filter: material.attributes.invert_filter if material.attributes.filter %>
+        }

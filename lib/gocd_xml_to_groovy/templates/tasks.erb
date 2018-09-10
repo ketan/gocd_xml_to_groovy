@@ -1,0 +1,5 @@
+tasks {
+                <%- tasks.each do |task| -%>
+                <%= render "tasks/#{task.type}.erb", task: task %>
+                <%- end -%>
+              }
