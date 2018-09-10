@@ -20,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. First clone this repository and setup dependencies
+
+    ```shell
+    git clone https://github.com/ketan/gocd_xml_to_groovy
+    cd gocd_xml_to_groovy
+    bin/setup
+    ```
+
+2. Download the pipeline config using API:
+    
+    ```shell
+    curl https://build.gocd.org/go/api/admin/pipelines/name \
+            -H 'Accept: application/vnd.go.cd.v6+json' \
+            --output input-pipeline.json
+    ```
+
+3. Convert the pipeline config JSON to Groovy:
+
+    ```shell
+    bundle exec exe/gocd_xml_to_groovy process input-pipeline.json --output-dir OUTPUT_DIR
+    ```
 
 ## Development
 
